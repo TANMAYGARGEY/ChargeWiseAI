@@ -1,0 +1,35 @@
+flowchart TD
+    subgraph UI["1. User & Interface Layer"]
+        User["Station Operator / Fleet Manager"] --> Dashboard["Streamlit Dashboard (app.py)"]
+        Dashboard --> Inputs["EV Requests Telemetry, Dynamic Tariffs & Policy Selection"]
+    end
+
+    subgraph Agents["2. Multi-Agent Orchestration Layer"]
+        Inputs --> Planner["Planner Agent (Coordinator)<br/>Decomposes goals, applies policy weights"]
+        Planner --> Research["Research & Analysis Agent<br/>Estimates energy, duration & urgency score"]
+        Research --> Executor["Executor / Allocation Agent<br/>Contiguous slot allocation & candidate scoring"]
+        Executor --> ToolCost["Energy Cost Tool<br/>Calculates per-slot tariff costs"]
+        ToolCost --> Critic{"Critic Agent (Validator)<br/>Zero-trust check of 6 hard constraints"}
+    end
+
+    subgraph Safety["3. Self-Healing & Validation Layer"]
+        Critic -->|PASS| ValidSchedule["Validated Charging Schedule & KPIs"]
+        Critic -->|REJECT| Replan["Conditional Replanning Branch<br/>Re-prioritizes & generates clean attempt"]
+        Replan --> Executor
+    end
+
+    subgraph Analytics["4. Analytics & Counterfactual Layer"]
+        Dashboard --> Compare["Policy Comparison Engine<br/>Simultaneously evaluates Balanced, Cost Saver & Urgent First"]
+        Compare --> Executor
+    end
+
+    subgraph AIExplanation["5. Explanation & Automation Layer"]
+        ValidSchedule -. contextual data .-> Explainer["Explanation Agent (LangChain)"]
+        Dashboard -->|User Query| Explainer
+        Explainer --> LLM{"Model Provider"}
+        LLM -->|Local Ollama| LocalModel["Ollama Service (llama3.2:3b)"]
+        LLM -->|Offline Fallback| MockModel["Intelligent Mock Agentic Engine"]
+        LocalModel --> Explainer
+        MockModel --> Explainer
+        Explainer --> Dashboard
+    end
