@@ -60,30 +60,6 @@ with st.sidebar:
     )
 
     st.divider()
-    ppt_path = "ChargeWiseAI_CA3_Presentation.pptx"
-    if os.path.exists(ppt_path):
-        with open(ppt_path, "rb") as f:
-            ppt_bytes = f.read()
-        st.download_button(
-            label="📥 Download Presentation Deck (PPTX)",
-            data=ppt_bytes,
-            file_name="ChargeWiseAI_CA3_Presentation.pptx",
-            mime="application/vnd.openxmlformats-officedocument.presentationml.presentation",
-            use_container_width=True
-        )
-
-    doc_path = "ChargeWiseAI_Complete_Project_Report.docx"
-    if os.path.exists(doc_path):
-        with open(doc_path, "rb") as f:
-            doc_bytes = f.read()
-        st.download_button(
-            label="📄 Download Complete Report (DOCX)",
-            data=doc_bytes,
-            file_name="ChargeWiseAI_Complete_Project_Report.docx",
-            mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-            use_container_width=True
-        )
-
     st.caption("🔒 **Safety Boundary:** All scheduling, calculations, and constraints are executed deterministically by Python tools. The LLM explains results and cannot override the Critic.")
 
 # Initialize Session State

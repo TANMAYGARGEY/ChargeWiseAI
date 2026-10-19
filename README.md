@@ -2,7 +2,7 @@
 
 **Course CA-3 Proof of Concept (PoC)**  
 **Domain:** Smart Mobility, Clean Energy & Commercial Fleet Operations (Business Operations)  
-**Deliverables Included:** Working Streamlit UI PoC, Architecture Diagram (`architecture.mmd`), Presentation Deck (`ChargeWiseAI_CA3_Presentation.pptx`), 5-Minute Presentation Script (`PRESENTATION.md`), and Unit Tests (`tests/test_agents.py`).
+**Deliverables Included:** Working Streamlit UI PoC, Architecture Diagram (`architecture.mmd`), and Automated Unit Tests (`tests/test_agents.py`).
 
 ---
 
@@ -151,15 +151,7 @@ python -m unittest discover -s tests -v
 
 ---
 
-## 📽️ 7. Presentation & 5-Minute Defense Material
-
-- **PowerPoint Slide Deck:** `ChargeWiseAI_CA3_Presentation.pptx` (9 widescreen 16:9 slides covering Problem, Architecture, PoC, Validation, Results, and Viva Defense).
-- **Regenerate PPT:** Run `python generate_ppt.py`.
-- **5-Minute Speaking Script & Viva Q&A:** See `PRESENTATION.md` for a minute-by-minute speaking script and answers to tough technical questions.
-
----
-
-## 📋 8. Assumptions, Limitations & Future Scope
+## 📋 7. Assumptions, Limitations & Future Scope
 
 ### Current PoC Assumptions
 1. Standardized 60 kWh battery pack capacity.
